@@ -1,0 +1,682 @@
+{
+  "exp1_embedding": [
+    {
+      "student_id": "aluno_01",
+      "text_id": "redacao_alta_01",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.7974,
+      "evidence_spans": [
+        {
+          "start_char": 0,
+          "end_char": 288,
+          "span_text": "O uso exagerado de redes sociais entre adolescentes tem ampliado casos de ansiedade e comparação social. Muitos jovens passam horas acompanhando padrões irreais de vida e beleza, o que reduz a autoestima. Além disso, o uso noturno do celular prejudica o sono e piora sintomas depressivos.",
+          "label": "alinhado"
+        }
+      ],
+      "model_version": "embedding-baseline-v1.0.0",
+      "metadados": {
+        "experimento": "embedding_baseline",
+        "modelo_embedding": "paraphrase-multilingual-MiniLM-L12-v2",
+        "provedor_embedding": "local_sentence_transformers",
+        "num_chunks": 1,
+        "sim_por_chunk": [
+          0.7974
+        ],
+        "sim_media_simples": 0.7974,
+        "sim_media_ponderada": 0.7974,
+        "tamanho_chunk": 3,
+        "passo_chunk": 1,
+        "custo_usd_estimado": 0.0
+      }
+    },
+    {
+      "student_id": "aluno_02",
+      "text_id": "redacao_alta_02",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.7951,
+      "evidence_spans": [
+        {
+          "start_char": 0,
+          "end_char": 264,
+          "span_text": "As redes sociais podem gerar dependência comportamental em jovens. Quando usadas sem limite, afetam a concentração escolar e provocam sensação constante de inadequação. Programas de educação digital e apoio psicológico são importantes para proteger a saúde mental.",
+          "label": "alinhado"
+        }
+      ],
+      "model_version": "embedding-baseline-v1.0.0",
+      "metadados": {
+        "experimento": "embedding_baseline",
+        "modelo_embedding": "paraphrase-multilingual-MiniLM-L12-v2",
+        "provedor_embedding": "local_sentence_transformers",
+        "num_chunks": 1,
+        "sim_por_chunk": [
+          0.7951
+        ],
+        "sim_media_simples": 0.7951,
+        "sim_media_ponderada": 0.7951,
+        "tamanho_chunk": 3,
+        "passo_chunk": 1,
+        "custo_usd_estimado": 0.0
+      }
+    },
+    {
+      "student_id": "aluno_03",
+      "text_id": "redacao_parcial_01",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.6631,
+      "evidence_spans": [
+        {
+          "start_char": 0,
+          "end_char": 223,
+          "span_text": "A tecnologia mudou a forma de estudar. Plataformas online ajudam no acesso ao conhecimento e também facilitam a comunicação entre colegas. Contudo, as redes sociais podem distrair e causar estresse quando não há equilíbrio.",
+          "label": "alinhado"
+        }
+      ],
+      "model_version": "embedding-baseline-v1.0.0",
+      "metadados": {
+        "experimento": "embedding_baseline",
+        "modelo_embedding": "paraphrase-multilingual-MiniLM-L12-v2",
+        "provedor_embedding": "local_sentence_transformers",
+        "num_chunks": 1,
+        "sim_por_chunk": [
+          0.6631
+        ],
+        "sim_media_simples": 0.6631,
+        "sim_media_ponderada": 0.6631,
+        "tamanho_chunk": 3,
+        "passo_chunk": 1,
+        "custo_usd_estimado": 0.0
+      }
+    },
+    {
+      "student_id": "aluno_04",
+      "text_id": "redacao_parcial_02",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.7296,
+      "evidence_spans": [
+        {
+          "start_char": 0,
+          "end_char": 221,
+          "span_text": "Os jovens utilizam internet para lazer e estudo. Esse uso pode ser positivo, mas o excesso de tempo em aplicativos sociais atrapalha a rotina. O problema é que o texto não aprofunda totalmente as consequências emocionais.",
+          "label": "alinhado"
+        }
+      ],
+      "model_version": "embedding-baseline-v1.0.0",
+      "metadados": {
+        "experimento": "embedding_baseline",
+        "modelo_embedding": "paraphrase-multilingual-MiniLM-L12-v2",
+        "provedor_embedding": "local_sentence_transformers",
+        "num_chunks": 1,
+        "sim_por_chunk": [
+          0.7296
+        ],
+        "sim_media_simples": 0.7296,
+        "sim_media_ponderada": 0.7296,
+        "tamanho_chunk": 3,
+        "passo_chunk": 1,
+        "custo_usd_estimado": 0.0
+      }
+    },
+    {
+      "student_id": "aluno_05",
+      "text_id": "redacao_baixa_01",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.2808,
+      "evidence_spans": [
+        {
+          "start_char": 0,
+          "end_char": 197,
+          "span_text": "As mudanças climáticas afetam todo o planeta. O desmatamento e a poluição exigem políticas públicas e investimento em energia renovável. A educação ambiental é essencial para reduzir danos futuros.",
+          "label": "alinhado"
+        }
+      ],
+      "model_version": "embedding-baseline-v1.0.0",
+      "metadados": {
+        "experimento": "embedding_baseline",
+        "modelo_embedding": "paraphrase-multilingual-MiniLM-L12-v2",
+        "provedor_embedding": "local_sentence_transformers",
+        "num_chunks": 1,
+        "sim_por_chunk": [
+          0.2808
+        ],
+        "sim_media_simples": 0.2808,
+        "sim_media_ponderada": 0.2808,
+        "tamanho_chunk": 3,
+        "passo_chunk": 1,
+        "custo_usd_estimado": 0.0
+      }
+    },
+    {
+      "student_id": "aluno_06",
+      "text_id": "redacao_baixa_02",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.2314,
+      "evidence_spans": [
+        {
+          "start_char": 0,
+          "end_char": 218,
+          "span_text": "A mobilidade urbana depende de transporte público eficiente. Cidades com planejamento adequado reduzem congestionamentos e melhoram a qualidade de vida da população. Investimentos em metrô e ciclovias são prioritários.",
+          "label": "alinhado"
+        }
+      ],
+      "model_version": "embedding-baseline-v1.0.0",
+      "metadados": {
+        "experimento": "embedding_baseline",
+        "modelo_embedding": "paraphrase-multilingual-MiniLM-L12-v2",
+        "provedor_embedding": "local_sentence_transformers",
+        "num_chunks": 1,
+        "sim_por_chunk": [
+          0.2314
+        ],
+        "sim_media_simples": 0.2314,
+        "sim_media_ponderada": 0.2314,
+        "tamanho_chunk": 3,
+        "passo_chunk": 1,
+        "custo_usd_estimado": 0.0
+      }
+    }
+  ],
+  "exp2_zero_shot": [
+    {
+      "student_id": "aluno_01",
+      "text_id": "redacao_alta_01",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.8,
+      "evidence_spans": [
+        {
+          "start_char": 2,
+          "end_char": 103,
+          "span_text": "uso exagerado de redes sociais entre adolescentes tem ampliado casos de ansiedade e comparação social",
+          "label": "alinhado"
+        },
+        {
+          "start_char": 185,
+          "end_char": 203,
+          "span_text": "reduz a autoestima",
+          "label": "parcial"
+        },
+        {
+          "start_char": 242,
+          "end_char": 287,
+          "span_text": "prejudica o sono e piora sintomas depressivos",
+          "label": "alinhado"
+        }
+      ],
+      "model_version": "prompt-zero-shot-v1.0.0",
+      "metadados": {
+        "experimento": "prompt_engineering",
+        "modo": "zero_shot",
+        "modelo_chat": "llama3.1:8b",
+        "provedor_llm": "ollama",
+        "raciocinio": "O texto apresenta uma boa compreensão do tema, abordando os impactos negativos do uso excessivo de redes sociais na saúde mental dos jovens.",
+        "tokens_entrada_estimados": 294,
+        "tokens_saida_estimados": 127,
+        "custo_usd_estimado": 0.0,
+        "num_exemplos_few_shot": 0
+      }
+    },
+    {
+      "student_id": "aluno_02",
+      "text_id": "redacao_alta_02",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.8,
+      "evidence_spans": [
+        {
+          "start_char": 0,
+          "end_char": 66,
+          "span_text": "As redes sociais podem gerar dependência comportamental em jovens.",
+          "label": "alinhado"
+        },
+        {
+          "start_char": 67,
+          "end_char": 122,
+          "span_text": "Quando usadas sem limite, afetam a concentração escolar",
+          "label": "parcial"
+        },
+        {
+          "start_char": 169,
+          "end_char": 264,
+          "span_text": "Programas de educação digital e apoio psicológico são importantes para proteger a saúde mental.",
+          "label": "alinhado"
+        }
+      ],
+      "model_version": "prompt-zero-shot-v1.0.0",
+      "metadados": {
+        "experimento": "prompt_engineering",
+        "modo": "zero_shot",
+        "modelo_chat": "llama3.1:8b",
+        "provedor_llm": "ollama",
+        "raciocinio": "O texto apresenta uma boa compreensão do tema, abordando os impactos negativos das redes sociais na saúde mental dos jovens e sugerindo soluções.",
+        "tokens_entrada_estimados": 288,
+        "tokens_saida_estimados": 141,
+        "custo_usd_estimado": 0.0,
+        "num_exemplos_few_shot": 0
+      }
+    },
+    {
+      "student_id": "aluno_03",
+      "text_id": "redacao_parcial_01",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.6,
+      "evidence_spans": [
+        {
+          "start_char": 148,
+          "end_char": 222,
+          "span_text": "as redes sociais podem distrair e causar estresse quando não há equilíbrio",
+          "label": "parcial"
+        },
+        {
+          "start_char": 139,
+          "end_char": 164,
+          "span_text": "Contudo, as redes sociais",
+          "label": "alinhado"
+        }
+      ],
+      "model_version": "prompt-zero-shot-v1.0.0",
+      "metadados": {
+        "experimento": "prompt_engineering",
+        "modo": "zero_shot",
+        "modelo_chat": "llama3.1:8b",
+        "provedor_llm": "ollama",
+        "raciocinio": "O texto aborda parcialmente os impactos das redes sociais na saúde mental dos jovens, mas não discute diretamente o tema.",
+        "tokens_entrada_estimados": 277,
+        "tokens_saida_estimados": 104,
+        "custo_usd_estimado": 0.0,
+        "num_exemplos_few_shot": 0
+      }
+    },
+    {
+      "student_id": "aluno_04",
+      "text_id": "redacao_parcial_02",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.6,
+      "evidence_spans": [
+        {
+          "start_char": 0,
+          "end_char": 48,
+          "span_text": "Os jovens utilizam internet para lazer e estudo.",
+          "label": "parcial"
+        },
+        {
+          "start_char": 81,
+          "end_char": 142,
+          "span_text": "o excesso de tempo em aplicativos sociais atrapalha a rotina.",
+          "label": "alinhado"
+        },
+        {
+          "start_char": 143,
+          "end_char": 221,
+          "span_text": "O problema é que o texto não aprofunda totalmente as consequências emocionais.",
+          "label": "fora_do_tema"
+        }
+      ],
+      "model_version": "prompt-zero-shot-v1.0.0",
+      "metadados": {
+        "experimento": "prompt_engineering",
+        "modo": "zero_shot",
+        "modelo_chat": "llama3.1:8b",
+        "provedor_llm": "ollama",
+        "raciocinio": "O texto aborda parcialmente os impactos do uso excessivo de redes sociais na saúde mental dos jovens, mas não explora completamente as consequências emocionais.",
+        "tokens_entrada_estimados": 277,
+        "tokens_saida_estimados": 139,
+        "custo_usd_estimado": 0.0,
+        "num_exemplos_few_shot": 0
+      }
+    },
+    {
+      "student_id": "aluno_05",
+      "text_id": "redacao_baixa_01",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.0,
+      "evidence_spans": [
+        {
+          "start_char": 0,
+          "end_char": 45,
+          "span_text": "As mudanças climáticas afetam todo o planeta.",
+          "label": "fora_do_tema"
+        },
+        {
+          "start_char": 46,
+          "end_char": 136,
+          "span_text": "O desmatamento e a poluição exigem políticas públicas e investimento em energia renovável.",
+          "label": "fora_do_tema"
+        },
+        {
+          "start_char": 137,
+          "end_char": 197,
+          "span_text": "A educação ambiental é essencial para reduzir danos futuros.",
+          "label": "fora_do_tema"
+        }
+      ],
+      "model_version": "prompt-zero-shot-v1.0.0",
+      "metadados": {
+        "experimento": "prompt_engineering",
+        "modo": "zero_shot",
+        "modelo_chat": "llama3.1:8b",
+        "provedor_llm": "ollama",
+        "raciocinio": "O texto não aborda os impactos do uso excessivo de redes sociais na saúde mental dos jovens, mas sim discute mudanças climáticas e educação ambiental.",
+        "tokens_entrada_estimados": 271,
+        "tokens_saida_estimados": 140,
+        "custo_usd_estimado": 0.0,
+        "num_exemplos_few_shot": 0
+      }
+    },
+    {
+      "student_id": "aluno_06",
+      "text_id": "redacao_baixa_02",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.0,
+      "evidence_spans": [
+        {
+          "start_char": 0,
+          "end_char": 59,
+          "span_text": "A mobilidade urbana depende de transporte público eficiente",
+          "label": "fora_do_tema"
+        },
+        {
+          "start_char": 61,
+          "end_char": 164,
+          "span_text": "Cidades com planejamento adequado reduzem congestionamentos e melhoram a qualidade de vida da população",
+          "label": "fora_do_tema"
+        },
+        {
+          "start_char": 166,
+          "end_char": 217,
+          "span_text": "Investimentos em metrô e ciclovias são prioritários",
+          "label": "fora_do_tema"
+        }
+      ],
+      "model_version": "prompt-zero-shot-v1.0.0",
+      "metadados": {
+        "experimento": "prompt_engineering",
+        "modo": "zero_shot",
+        "modelo_chat": "llama3.1:8b",
+        "provedor_llm": "ollama",
+        "raciocinio": "O texto não aborda os impactos do uso excessivo de redes sociais na saúde mental dos jovens, mas sim a importância da mobilidade urbana eficiente.",
+        "tokens_entrada_estimados": 276,
+        "tokens_saida_estimados": 157,
+        "custo_usd_estimado": 0.0,
+        "num_exemplos_few_shot": 0
+      }
+    }
+  ],
+  "exp2_few_shot": [
+    {
+      "student_id": "aluno_01",
+      "text_id": "redacao_alta_01",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.98,
+      "evidence_spans": [
+        {
+          "start_char": 2,
+          "end_char": 83,
+          "span_text": "uso exagerado de redes sociais entre adolescentes tem ampliado casos de ansiedade",
+          "label": "alinhado"
+        }
+      ],
+      "model_version": "prompt-few-shot-v1.0.0",
+      "metadados": {
+        "experimento": "prompt_engineering",
+        "modo": "few_shot",
+        "modelo_chat": "llama3.1:8b",
+        "provedor_llm": "ollama",
+        "raciocinio": "O texto aborda diretamente os impactos das redes sociais na saúde mental dos jovens, citando ansiedade, comparação social, autoestima e depressão.",
+        "tokens_entrada_estimados": 841,
+        "tokens_saida_estimados": 102,
+        "custo_usd_estimado": 0.0,
+        "num_exemplos_few_shot": 3
+      }
+    },
+    {
+      "student_id": "aluno_02",
+      "text_id": "redacao_alta_02",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.88,
+      "evidence_spans": [
+        {
+          "start_char": 0,
+          "end_char": 65,
+          "span_text": "As redes sociais podem gerar dependência comportamental em jovens",
+          "label": "alinhado"
+        },
+        {
+          "start_char": 93,
+          "end_char": 167,
+          "span_text": "afetam a concentração escolar e provocam sensação constante de inadequação",
+          "label": "alinhado"
+        }
+      ],
+      "model_version": "prompt-few-shot-v1.0.0",
+      "metadados": {
+        "experimento": "prompt_engineering",
+        "modo": "few_shot",
+        "modelo_chat": "llama3.1:8b",
+        "provedor_llm": "ollama",
+        "raciocinio": "O texto aborda diretamente os impactos das redes sociais na saúde mental dos jovens, citando dependência comportamental, concentração escolar e inadequação.",
+        "tokens_entrada_estimados": 835,
+        "tokens_saida_estimados": 109,
+        "custo_usd_estimado": 0.0,
+        "num_exemplos_few_shot": 3
+      }
+    },
+    {
+      "student_id": "aluno_03",
+      "text_id": "redacao_parcial_01",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.62,
+      "evidence_spans": [
+        {
+          "start_char": 148,
+          "end_char": 222,
+          "span_text": "as redes sociais podem distrair e causar estresse quando não há equilíbrio",
+          "label": "alinhado"
+        },
+        {
+          "start_char": 139,
+          "end_char": 222,
+          "span_text": "Contudo, as redes sociais podem distrair e causar estresse quando não há equilíbrio",
+          "label": "parcial"
+        }
+      ],
+      "model_version": "prompt-few-shot-v1.0.0",
+      "metadados": {
+        "experimento": "prompt_engineering",
+        "modo": "few_shot",
+        "modelo_chat": "llama3.1:8b",
+        "provedor_llm": "ollama",
+        "raciocinio": "O texto menciona que as redes sociais podem causar estresse, mas dedica a maior parte à tecnologia educacional e comunicação.",
+        "tokens_entrada_estimados": 824,
+        "tokens_saida_estimados": 106,
+        "custo_usd_estimado": 0.0,
+        "num_exemplos_few_shot": 3
+      }
+    },
+    {
+      "student_id": "aluno_04",
+      "text_id": "redacao_parcial_02",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.62,
+      "evidence_spans": [
+        {
+          "start_char": 83,
+          "end_char": 141,
+          "span_text": "excesso de tempo em aplicativos sociais atrapalha a rotina",
+          "label": "parcial"
+        },
+        {
+          "start_char": 143,
+          "end_char": 220,
+          "span_text": "O problema é que o texto não aprofunda totalmente as consequências emocionais",
+          "label": "fora_do_tema"
+        }
+      ],
+      "model_version": "prompt-few-shot-v1.0.0",
+      "metadados": {
+        "experimento": "prompt_engineering",
+        "modo": "few_shot",
+        "modelo_chat": "llama3.1:8b",
+        "provedor_llm": "ollama",
+        "raciocinio": "O texto menciona o uso excessivo de redes sociais e sua influência na rotina dos jovens, mas não explora profundamente os impactos na saúde mental.",
+        "tokens_entrada_estimados": 824,
+        "tokens_saida_estimados": 107,
+        "custo_usd_estimado": 0.0,
+        "num_exemplos_few_shot": 3
+      }
+    },
+    {
+      "student_id": "aluno_05",
+      "text_id": "redacao_baixa_01",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.0,
+      "evidence_spans": [
+        {
+          "start_char": 3,
+          "end_char": 44,
+          "span_text": "mudanças climáticas afetam todo o planeta",
+          "label": "fora_do_tema"
+        },
+        {
+          "start_char": 139,
+          "end_char": 196,
+          "span_text": "educação ambiental é essencial para reduzir danos futuros",
+          "label": "fora_do_tema"
+        }
+      ],
+      "model_version": "prompt-few-shot-v1.0.0",
+      "metadados": {
+        "experimento": "prompt_engineering",
+        "modo": "few_shot",
+        "modelo_chat": "llama3.1:8b",
+        "provedor_llm": "ollama",
+        "raciocinio": "O texto não aborda o tema das redes sociais e saúde mental dos jovens, mas sim as mudanças climáticas e a educação ambiental.",
+        "tokens_entrada_estimados": 818,
+        "tokens_saida_estimados": 93,
+        "custo_usd_estimado": 0.0,
+        "num_exemplos_few_shot": 3
+      }
+    },
+    {
+      "student_id": "aluno_06",
+      "text_id": "redacao_baixa_02",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.0,
+      "evidence_spans": [
+        {
+          "start_char": 31,
+          "end_char": 59,
+          "span_text": "transporte público eficiente",
+          "label": "fora_do_tema"
+        },
+        {
+          "start_char": 134,
+          "end_char": 164,
+          "span_text": "qualidade de vida da população",
+          "label": "fora_do_tema"
+        }
+      ],
+      "model_version": "prompt-few-shot-v1.0.0",
+      "metadados": {
+        "experimento": "prompt_engineering",
+        "modo": "few_shot",
+        "modelo_chat": "llama3.1:8b",
+        "provedor_llm": "ollama",
+        "raciocinio": "O texto trata inteiramente de mobilidade urbana e transporte público, sem qualquer menção a redes sociais ou saúde mental.",
+        "tokens_entrada_estimados": 823,
+        "tokens_saida_estimados": 82,
+        "custo_usd_estimado": 0.0,
+        "num_exemplos_few_shot": 3
+      }
+    }
+  ],
+  "exp3_hibrido": [
+    {
+      "student_id": "aluno_01",
+      "text_id": "redacao_alta_01",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.0,
+      "evidence_spans": [],
+      "model_version": "skip",
+      "metadados": {
+        "skipped": true,
+        "erro": "ollama_sem_embeddings",
+        "llm_acionado": false,
+        "score_embedding": 0.0,
+        "custo_usd_estimado": 0.0
+      }
+    },
+    {
+      "student_id": "aluno_02",
+      "text_id": "redacao_alta_02",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.0,
+      "evidence_spans": [],
+      "model_version": "skip",
+      "metadados": {
+        "skipped": true,
+        "erro": "ollama_sem_embeddings",
+        "llm_acionado": false,
+        "score_embedding": 0.0,
+        "custo_usd_estimado": 0.0
+      }
+    },
+    {
+      "student_id": "aluno_03",
+      "text_id": "redacao_parcial_01",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.0,
+      "evidence_spans": [],
+      "model_version": "skip",
+      "metadados": {
+        "skipped": true,
+        "erro": "ollama_sem_embeddings",
+        "llm_acionado": false,
+        "score_embedding": 0.0,
+        "custo_usd_estimado": 0.0
+      }
+    },
+    {
+      "student_id": "aluno_04",
+      "text_id": "redacao_parcial_02",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.0,
+      "evidence_spans": [],
+      "model_version": "skip",
+      "metadados": {
+        "skipped": true,
+        "erro": "ollama_sem_embeddings",
+        "llm_acionado": false,
+        "score_embedding": 0.0,
+        "custo_usd_estimado": 0.0
+      }
+    },
+    {
+      "student_id": "aluno_05",
+      "text_id": "redacao_baixa_01",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.0,
+      "evidence_spans": [],
+      "model_version": "skip",
+      "metadados": {
+        "skipped": true,
+        "erro": "ollama_sem_embeddings",
+        "llm_acionado": false,
+        "score_embedding": 0.0,
+        "custo_usd_estimado": 0.0
+      }
+    },
+    {
+      "student_id": "aluno_06",
+      "text_id": "redacao_baixa_02",
+      "theme_id": "tema_redes_sociais_saude_mental",
+      "alignment_score": 0.0,
+      "evidence_spans": [],
+      "model_version": "skip",
+      "metadados": {
+        "skipped": true,
+        "erro": "ollama_sem_embeddings",
+        "llm_acionado": false,
+        "score_embedding": 0.0,
+        "custo_usd_estimado": 0.0
+      }
+    }
+  ]
+}
