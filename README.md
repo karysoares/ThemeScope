@@ -193,6 +193,8 @@ r3  = exp3.avaliar(**kwargs)                    # híbrido
 
 ## Documentação adicional
 
+
+- Documentação técnica: `documentacao.md`
 - Análise da execução dos experimentos: `resultados_experimento_analise.md`
 
 ---
