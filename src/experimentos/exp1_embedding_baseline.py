@@ -4,15 +4,15 @@ src/experimentos/exp1_embedding_baseline.py
 Experimento 1 — Embedding Baseline
 
 Pipeline:
-  1. Embedda o tema (proposta) como vetor de referência.
+  1. Embedda o tema (proposta) como vetor de referência (sentence-transformers local).
   2. Divide a redação em chunks de N sentenças (sliding window).
-  3. Embedda cada chunk em batch (uma chamada à API).
+  3. Embedda cada chunk localmente.
   4. Calcula similaridade cosseno entre cada chunk e o tema.
-  5. Agrega as similaridades por média ponderada (peso = sim_i / Σsim).
+  5. Agrega as similaridades por média ponderada (mesma função que o gate do Exp3).
   6. Seleciona os K chunks com maior e menor similaridade como evidências.
 
 Vantagens:
-  - Custo baixíssimo: apenas embeddings (US$0,02/1M tokens).
+  - Custo US$0 por requisição (após download do modelo local).
   - Latência sub-segundo para textos escolares típicos.
   - Reprodutível: embeddings são determinísticos.
 
@@ -25,66 +25,21 @@ Limitações:
 from __future__ import annotations
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
 
+from ..local_embeddings import MODELO_EMBEDDING_LOCAL, codificar_textos
 from ..utils import (
     RespostaAlinhamento,
     SpanEvidencia,
+    agregar_similaridades_chunks,
     chunkar_por_sentenca,
     similaridade_cosseno,
 )
 
 VERSAO = "embedding-baseline-v1.0.0"
-MODELO_EMBEDDING_LOCAL = "paraphrase-multilingual-MiniLM-L12-v2"
 
 TOP_K_EVIDENCIAS = 2
 TAMANHO_CHUNK = 3
 PASSO_CHUNK = 1
-_MODELO_LOCAL: SentenceTransformer | None = None
-
-
-def _carregar_modelo_local() -> SentenceTransformer:
-    global _MODELO_LOCAL
-    if _MODELO_LOCAL is None:
-        _MODELO_LOCAL = SentenceTransformer(MODELO_EMBEDDING_LOCAL)
-    return _MODELO_LOCAL
-
-
-def _obter_embeddings_locais(textos: list[str]) -> list[np.ndarray]:
-    modelo = _carregar_modelo_local()
-    vetores = modelo.encode(
-        textos,
-        convert_to_numpy=True,
-        normalize_embeddings=True,
-        show_progress_bar=False,
-    )
-    return [np.array(v, dtype=np.float32) for v in vetores]
-
-
-def _similaridades_para_score(sims: list[float]) -> float:
-    """
-    Agrega lista de similaridades em score final via média ponderada.
-
-    A média ponderada por própria similaridade valoriza mais os chunks
-    já alinhados, amplificando o sinal em redações parcialmente alinhadas.
-
-    Args:
-        sims: Lista de floats em [−1, 1].
-
-    Returns:
-        Score normalizado em [0, 1].
-    """
-    if not sims:
-        return 0.0
-    arr = np.array(sims, dtype=np.float32)
-    # Clipa negativos a 0 
-    arr = np.clip(arr, 0.0, 1.0)
-    soma = arr.sum()
-    if soma == 0:
-        return float(arr.mean())
-    pesos = arr / soma
-    score_ponderado = float(np.dot(pesos, arr))
-    return round(float(np.clip(score_ponderado, 0.0, 1.0)), 4)
 
 
 def _selecionar_evidencias(
@@ -164,7 +119,7 @@ def avaliar(
         student_text:      Texto completo da redação.
         theme_id:          Identificador do tema.
         theme_description: Enunciado/proposta do tema.
-        chave_api:         Chave de API da OpenAI.
+        chave_api:         Reservado para compatibilidade de assinatura; não usado (embeddings locais).
         tamanho_chunk:     Número de sentenças por chunk.
         passo_chunk:       Passo da janela deslizante.
 
@@ -174,13 +129,13 @@ def avaliar(
     chunks = chunkar_por_sentenca(student_text, tamanho_chunk, passo_chunk)
 
     entradas = [theme_description, *chunks]
-    vetores = _obter_embeddings_locais(entradas)
+    vetores = codificar_textos(entradas)
     emb_tema = vetores[0]
     embs_chunks = vetores[1:]
 
     sims = [similaridade_cosseno(emb_chunk, emb_tema) for emb_chunk in embs_chunks]
 
-    score = _similaridades_para_score(sims)
+    score = agregar_similaridades_chunks(sims)
 
     evidencias = _selecionar_evidencias(student_text, chunks, sims)
 

@@ -1,21 +1,23 @@
+"""Experimento 3 — pipeline híbrido (gate por embedding + LLM na zona de incerteza)."""
+
 from __future__ import annotations
 
 from typing import Literal
 
 from ..utils import (
+    CUSTO_LLM_POR_REQ_USD,
     RespostaAlinhamento,
     chunkar_por_sentenca,
-    similaridade_cosseno, # Ainda usado em _calcular_score_embedding
-    CUSTO_LLM_POR_REQ_USD,
+    similaridade_cosseno,  # Ainda usado em _calcular_score_embedding
 )
 from . import exp2_prompt_engineering as prompt
-from .embedding_logic import ( # Importa as funções movidas
+from .embedding_logic import (  # Importa as funções movidas
     _obter_embeddings_para_analise,
-    _similaridades_para_score,
     _selecionar_evidencias,
+    _similaridades_para_score,
 )
 
-VERSAO = "hibrido-v1.0.1" 
+VERSAO = "hibrido-v1.0.1"
 
 # Limiares de decisão — calibrar com dados reais anotados
 LIMIAR_BAIXO: float = 0.35   # abaixo → embedding é suficiente (claramente fora)

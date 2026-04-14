@@ -1,15 +1,19 @@
+"""Gate de embeddings para o experimento híbrido (OpenAI ou sentence-transformers local)."""
+
 from __future__ import annotations
 
 import numpy as np
-from typing import Any
 
+from ..local_embeddings import codificar_textos
 from ..utils import (
+    CUSTO_EMBEDDING_POR_TOKEN_USD,
     SpanEvidencia,
-    obter_embeddings, # Função unificada de obtenção de embeddings
-    similaridade_cosseno,
+    agregar_similaridades_chunks,
     ancorar_spans,
-    CUSTO_EMBEDDING_POR_TOKEN_USD
+    obter_embeddings,
+    provedor_llm_atual,
 )
+
 
 def _obter_embeddings_para_analise(
     entradas: list[str],
@@ -30,29 +34,19 @@ def _obter_embeddings_para_analise(
     if not entradas:
         return [], 0.0
 
+    if provedor_llm_atual() == "ollama":
+        return codificar_textos(entradas), 0.0
+
     vetores = obter_embeddings(entradas, chave_api)
-    num_tokens_total = sum(len(text.split()) for text in entradas) # Aproximação
+    num_tokens_total = sum(len(text.split()) for text in entradas)
     custo_estimado = num_tokens_total * CUSTO_EMBEDDING_POR_TOKEN_USD
 
     return vetores, custo_estimado
 
 
 def _similaridades_para_score(sims: list[float]) -> float:
-    """
-    Converte uma lista de similaridades de chunks em um score único.
-    Usa a média das 3 maiores similaridades para robustez.
-
-    Args:
-        sims: Lista de scores de similaridade.
-
-    Returns:
-        Um score float único.
-    """
-    if not sims:
-        return 0.0
-    # Pega as 3 maiores similaridades ou todas se houver menos de 3
-    top_sims = sorted(sims, reverse=True)[:3]
-    return float(np.mean(top_sims))
+    """Delega para a mesma agregação do Exp1 (limiares do híbrido calibrados nesse espaço)."""
+    return agregar_similaridades_chunks(sims)
 
 
 def _selecionar_evidencias(
@@ -60,7 +54,7 @@ def _selecionar_evidencias(
     chunks: list[str],
     similaridades: list[float],
     limiar_evidencia: float = 0.5, # Limiar para considerar um chunk como evidência
-    top_n_evidencias: int = 5,    
+    top_n_evidencias: int = 5,
 ) -> list[SpanEvidencia]:
     """
     Seleciona os chunks mais relevantes como evidências e os ancora no texto original.
@@ -80,7 +74,7 @@ def _selecionar_evidencias(
 
     candidatos = [
         {"span_text": chunk, "label": "alinhado", "score": sim}
-        for chunk, sim in zip(chunks, similaridades)
+        for chunk, sim in zip(chunks, similaridades, strict=True)
         if sim >= limiar_evidencia
     ]
     candidatos_ordenados = sorted(candidatos, key=lambda x: x["score"], reverse=True)

@@ -21,7 +21,7 @@ python scripts/experimentos.py
 
 pytest -q
 
-uvicorn main:app --reload
+uvicorn api.main:app --reload
 ```
 
 ---
@@ -83,10 +83,19 @@ Saídas esperadas:
 pytest -q
 ```
 
-### 5) Subir a API HTTP
+Lint (Ruff; configuração em `pyproject.toml`):
 
 ```bash
-uvicorn main:app --reload
+pip install ruff
+ruff check src api tests
+```
+
+### 5) Subir a API HTTP
+
+Na raiz do repositório:
+
+```bash
+uvicorn api.main:app --reload
 ```
 
 Endpoints principais:

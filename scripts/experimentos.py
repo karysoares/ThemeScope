@@ -35,7 +35,7 @@ from src.experimentos import exp1_embedding_baseline as exp1
 from src.experimentos import exp2_prompt_engineering as exp2
 from src.experimentos import exp3_hibrido as exp3
 from src.metricas import calcular_metricas, imprimir_relatorio
-from src.utils import PROVEDOR_LLM, RespostaAlinhamento
+from src.utils import RespostaAlinhamento, provedor_llm_atual
 
 W = 70
 PAUSA_PADRAO_S = 2.0
@@ -149,46 +149,20 @@ def avaliar_redacao(
 
     print("    [Exp 3]  híbrido...     ", end="", flush=True)
 
-    try:
-        t0 = time.perf_counter()
-        resultados["exp3_hibrido"] = exp3.avaliar(**kwargs)
-        dt = time.perf_counter() - t0
+    t0 = time.perf_counter()
+    resultados["exp3_hibrido"] = exp3.avaliar(**kwargs)
+    dt = time.perf_counter() - t0
 
-        r = resultados["exp3_hibrido"]
+    r = resultados["exp3_hibrido"]
 
-        llm_tag = "LLM" if r.metadados.get("llm_acionado") else "Emb"
+    llm_tag = "LLM" if r.metadados.get("llm_acionado") else "Emb"
 
-        print(
-            f"score={r.alignment_score:.3f}  "
-            f"gate={llm_tag}  "
-            f"emb={r.metadados.get('score_embedding', 0):.3f}  "
-            f"({dt:.1f}s)"
-        )
-
-    except RuntimeError as e:
-
-        if "Embeddings não disponíveis" in str(e):
-
-            print("SKIPPED (ollama sem embeddings)")
-
-            resultados["exp3_hibrido"] = RespostaAlinhamento(
-                student_id=redacao.student_id,
-                text_id=redacao.text_id,
-                theme_id=TEMA_ID,
-                alignment_score=0.0,
-                evidence_spans=[],
-                model_version="skip",
-                metadados={
-                    "skipped": True,
-                    "erro": "ollama_sem_embeddings",
-                    "llm_acionado": False,
-                    "score_embedding": 0.0,
-                    "custo_usd_estimado": 0.0,
-                },
-            )
-
-        else:
-            raise
+    print(
+        f"score={r.alignment_score:.3f}  "
+        f"gate={llm_tag}  "
+        f"emb={r.metadados.get('score_embedding', 0):.3f}  "
+        f"({dt:.1f}s)"
+    )
 
     for nome, r in resultados.items():
 
@@ -263,7 +237,7 @@ def imprimir_tabela_custo(
 
 def main() -> None:
     chave = os.environ.get("OPENAI_API_KEY", "")
-    if PROVEDOR_LLM == "openai" and not chave:
+    if provedor_llm_atual() == "openai" and not chave:
         print("Erro: defina OPENAI_API_KEY antes de executar com provedor OpenAI.")
         print("  export OPENAI_API_KEY=sk-...")
         sys.exit(1)
@@ -278,7 +252,7 @@ def main() -> None:
     print(f"  Redações:    {len(TODAS_AS_REDACOES)}")
     print(f"  Variantes:   Exp1·Embedding | Exp2a·ZeroShot | "
           f"Exp2b·FewShot | Exp3·Híbrido")
-    print(f"  Provedor LLM: {PROVEDOR_LLM}")
+    print(f"  Provedor LLM: {provedor_llm_atual()}")
     print(f"  Pausa API:   {pausa_s:.1f}s entre chamadas")
     if modo_economico:
         print("  Modo:        econômico (throttling ativo)")

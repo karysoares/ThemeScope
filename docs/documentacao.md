@@ -50,10 +50,10 @@ Essa separação permite benchmarking, substituição de modelos e extensibilida
 
 # 3. Componentes do Sistema
 
-### 3.1. Avaliador Principal (`avaliador_alinhamento.py`)
-Implementa a lógica nuclear de interação com LLMs. Esse módulo define o contrato de entrada, contrato de saída e o pipeline completo de inferência.
+### 3.1. Avaliador legado (`avaliador_alinhamento.py`)
+Fachada sobre o **Experimento 2** em modo **zero-shot** (`exp2_prompt_engineering`), reutilizando `chamar_chat`, parsing JSON e ancoragem de spans em `utils`. Mantém `RequisicaoAlinhamento` para compatibilidade; o contrato de saída é `RespostaAlinhamento` de `utils`.
 
-A decisão arquitetural principal foi utilizar um modelo GPT-4o com temperatura zero, garantindo reprodutibilidade e consistência entre execuções. O prompt define um schema JSON obrigatório, evitando ambiguidade na resposta do modelo.
+Com `THEMESCOPE_LLM_PROVIDER=openai`, usa GPT-4o; com `ollama`, o modelo local configurado em `THEMESCOPE_OLLAMA_MODEL`. O prompt segue schema JSON obrigatório (alinhado ao Exp2).
 
 O modelo retorna:
 

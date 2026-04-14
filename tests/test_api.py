@@ -1,8 +1,6 @@
+import api.main as main
 from fastapi.testclient import TestClient
-
-import main
 from src.utils import RespostaAlinhamento, SpanEvidencia
-
 
 client = TestClient(main.app)
 
@@ -11,6 +9,7 @@ def test_health_ok():
     resp = client.get("/health")
     assert resp.status_code == 200
     assert resp.json() == {"status": "ok"}
+    assert "X-Request-ID" in resp.headers
 
 
 def test_avaliar_retorna_contrato_com_mock(monkeypatch):
@@ -42,9 +41,9 @@ def test_avaliar_retorna_contrato_com_mock(monkeypatch):
         "theme_description": "Tema de teste",
         "experimento": "exp3_hibrido",
         "modo_prompt": "few_shot",
-        "chave_api": "sk-teste",
     }
-    resp = client.post("/avaliar", json=payload)
+    headers = {"Authorization": "Bearer sk-teste"}
+    resp = client.post("/avaliar", json=payload, headers=headers)
 
     assert resp.status_code == 200
     data = resp.json()
@@ -73,6 +72,8 @@ def test_avaliar_sem_chave_funciona_no_provedor_local(monkeypatch):
         "student_text": "Texto de teste",
         "theme_id": "tema_01",
         "theme_description": "Tema de teste",
+        "experimento": "exp3_hibrido",
+        "modo_prompt": "few_shot",
     }
     resp = client.post("/avaliar", json=payload)
     assert resp.status_code == 200

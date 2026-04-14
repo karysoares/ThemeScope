@@ -22,10 +22,10 @@ from __future__ import annotations
 import statistics
 from dataclasses import dataclass
 from typing import Any
+
 # from src.experimentos.embedding import rodar_embedding
 # from src.experimentos.llm import rodar_llm
 # from src.experimentos.hibrido import rodar_hibrido
-
 from .utils import RespostaAlinhamento
 
 
@@ -77,6 +77,8 @@ class ResultadoMetricas:
     por_experimento: dict[str, MetricaExperimento]
     ranking_mae: list[str]
     resumo_global: dict[str, Any]
+
+
 def calcular_metricas(
     resultados: dict[str, list[RespostaAlinhamento]],
     intervalos_esperados: list[tuple[float, float]],
@@ -104,7 +106,7 @@ def calcular_metricas(
         acertos_de_faixa: list[bool] = []
         num_spans: list[int] = []
 
-        for resp, (s_min, s_max) in zip(respostas, intervalos_esperados):
+        for resp, (s_min, s_max) in zip(respostas, intervalos_esperados, strict=True):
 
             if not 0 <= resp.alignment_score <= 1:
                 raise ValueError(
@@ -257,10 +259,21 @@ def imprimir_relatorio(resultado: ResultadoMetricas) -> None:
     print(f"  {'=' * 70}\n")
 
 if __name__ == "__main__":
+    import os
+
+    from src.utils import provedor_llm_atual
+
+    if provedor_llm_atual() == "openai" and not os.environ.get("OPENAI_API_KEY"):
+        print("Defina OPENAI_API_KEY ou export THEMESCOPE_LLM_PROVIDER=ollama antes de rodar este módulo.")
+        raise SystemExit(1)
 
     from src.experimentos import (
         exp1_embedding_baseline as exp1,
+    )
+    from src.experimentos import (
         exp2_prompt_engineering as exp2,
+    )
+    from src.experimentos import (
         exp3_hibrido as exp3,
     )
 

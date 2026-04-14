@@ -29,11 +29,11 @@ from __future__ import annotations
 from typing import Literal
 
 from ..utils import (
-    PROVEDOR_LLM,
     RespostaAlinhamento,
     ancorar_spans,
     chamar_chat,
     parsear_json_llm,
+    provedor_llm_atual,
 )
 
 VERSAO_ZERO_SHOT = "prompt-zero-shot-v1.0.0"
@@ -211,13 +211,13 @@ def avaliar(
         metadados={
             "experimento":               "prompt_engineering",
             "modo":                      modo,
-            "modelo_chat":               "llama3.1:8b" if PROVEDOR_LLM == "ollama" else "gpt-4o",
-            "provedor_llm":              PROVEDOR_LLM,
+            "modelo_chat":               "llama3.1:8b" if provedor_llm_atual() == "ollama" else "gpt-4o",
+            "provedor_llm":              provedor_llm_atual(),
             "raciocinio":                parseado.get("raciocinio", ""),
             "tokens_entrada_estimados":  tokens_entrada_estimados,
             "tokens_saida_estimados":    tokens_saida_estimados,
             "custo_usd_estimado":        round(
-                0.0 if PROVEDOR_LLM == "ollama" else (
+                0.0 if provedor_llm_atual() == "ollama" else (
                     tokens_entrada_estimados * 2.5e-6 +
                     tokens_saida_estimados   * 10e-6
                 ), 6

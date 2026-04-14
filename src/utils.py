@@ -13,8 +13,9 @@ import os
 import random
 import re
 import time
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from typing import Any, Callable, TypeVar
+from typing import Any, TypeVar
 
 import numpy as np
 import requests
@@ -25,8 +26,15 @@ OLLAMA_URL_CHAT       = os.environ.get("THEMESCOPE_OLLAMA_URL", "http://localhos
 MODELO_CHAT           = "gpt-4o"
 MODELO_CHAT_LOCAL     = os.environ.get("THEMESCOPE_OLLAMA_MODEL", "llama3.1:8b")
 MODELO_EMBEDDING      = "text-embedding-3-small"   # 1.536 dimensões, ~US$0,02/1M tokens
-PROVEDOR_LLM          = os.environ.get("THEMESCOPE_LLM_PROVIDER", "ollama").lower()
-TEMPERATURA           = 0        
+
+
+def provedor_llm_atual() -> str:
+    """Lê THEMESCOPE_LLM_PROVIDER em tempo de execução (testes, Uvicorn reload)."""
+    return os.environ.get("THEMESCOPE_LLM_PROVIDER", "ollama").lower()
+
+
+PROVEDOR_LLM = provedor_llm_atual()
+TEMPERATURA           = 0
 MAX_TOKENS_CHAT       = 1024
 MAX_TENTATIVAS        = int(os.environ.get("THEMESCOPE_MAX_TENTATIVAS", "6"))
 DELAY_BASE_S          = float(os.environ.get("THEMESCOPE_DELAY_BASE_S", "2"))
@@ -187,7 +195,7 @@ def chamar_chat(
 
     Args:
         mensagens:  Lista de dicts com 'role' e 'content'.
-        chave_api:  Chave de API da OpenAI (ignorada se PROVEDOR_LLM for 'ollama').
+        chave_api:  Chave de API da OpenAI (ignorada se o provedor for 'ollama').
         temperatura: Temperatura de amostragem (0 = determinístico).
         max_tokens: Limite de tokens na resposta.
 
@@ -197,7 +205,7 @@ def chamar_chat(
     Raises:
         RuntimeError: Se todas as tentativas falharem.
     """
-    if PROVEDOR_LLM == "ollama":
+    if provedor_llm_atual() == "ollama":
         return _chamar_ollama_chat(mensagens, temperatura, max_tokens)
     return _chamar_openai_chat(mensagens, chave_api, temperatura, max_tokens)
 
@@ -266,13 +274,31 @@ def obter_embeddings(textos: list[str], chave_api: str) -> list[np.ndarray]:
     Obtém embeddings para uma lista de textos.
     Atualmente, apenas OpenAI é suportado para embeddings.
     """
-    if PROVEDOR_LLM == "ollama":
+    if provedor_llm_atual() == "ollama":
         raise RuntimeError("Embeddings não disponíveis com provedor 'ollama'. Use THEMESCOPE_LLM_PROVIDER=openai.")
 
     if len(textos) == 1:
         return [obter_embedding_openai(textos[0], chave_api)]
 
     return obter_embeddings_batch_openai(textos, chave_api)
+
+def agregar_similaridades_chunks(sims: list[float]) -> float:
+    """
+    Agrega similaridades de chunks em um score [0, 1] via média ponderada
+    (peso proporcional à própria similaridade, clipada em [0, 1]).
+    Mesma lógica usada no Exp1 e no gate de embedding do Exp3.
+    """
+    if not sims:
+        return 0.0
+    arr = np.array(sims, dtype=np.float32)
+    arr = np.clip(arr, 0.0, 1.0)
+    soma = arr.sum()
+    if soma == 0:
+        return float(round(float(np.clip(arr.mean(), 0.0, 1.0)), 4))
+    pesos = arr / soma
+    score_ponderado = float(np.dot(pesos, arr))
+    return round(float(np.clip(score_ponderado, 0.0, 1.0)), 4)
+
 
 def similaridade_cosseno(a: np.ndarray, b: np.ndarray) -> float:
     """
